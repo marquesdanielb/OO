@@ -5,7 +5,7 @@ namespace DMB\Banco\Modelo\Conta;
 
 use DMB\Banco\Modelo\CPF;
 
-class Conta
+abstract class Conta
 {
     private static $numeroDeContas = 0;
 
@@ -16,7 +16,11 @@ class Conta
         self::$numeroDeContas++;
     }
 
-    public function sacar(float $valorSaque) : void {
+    public function sacar(float $valorASacar) : void 
+    {
+        $valorTaxado = $valorASacar * $this->percentualTarifa();
+        $valorSaque = $valorASacar + $valorTaxado;
+
         if ($this->saldo < $valorSaque) {
             echo "Você não tem saldo para este saque";
             return;
@@ -25,7 +29,8 @@ class Conta
         $this->saldo -= $valorSaque;
     }
 
-    public function depositar(float $depositar) : void {
+    public function depositar(float $depositar) : void 
+    {
         if ($depositar < 0) {
             echo "Valor precisa ser positivo";
             return;
@@ -64,4 +69,6 @@ class Conta
     {
         return $this->titular->recuperaCpf();
     }
+
+    abstract protected function percentualTarifa();
 }
