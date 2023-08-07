@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DMB\Banco\Service;
 
-use DMB\Banco\Modelo\Funcionario;
+use DMB\Banco\Modelo\Funcionario\Funcionario;
 
 class ControladorDeBonificacoes
 {

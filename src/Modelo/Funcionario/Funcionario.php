@@ -1,9 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace DMB\Banco\Modelo;
+namespace DMB\Banco\Modelo\Funcionario;
 
-class Funcionario extends Pessoa
+use DMB\Banco\Modelo\Pessoa;
+use DMB\Banco\Modelo\CPF;
+
+abstract class Funcionario extends Pessoa
 {
     function __construct(
         private string $cargo,
@@ -32,5 +35,15 @@ class Funcionario extends Pessoa
     public function calculaBonificacao(): float
     {
         return $this->salario * 0.1;
+    }
+
+    public function recebeAumento(float $valor): void
+    {
+        if ($valor < 0) {
+            echo 'O valor deverá ser maior que zero';
+            return;
+        }
+
+        $this->salario += $valor;
     }
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DMB\Banco\Modelo;
 
-class Pessoa
+abstract class Pessoa
 {
     function __construct(
         protected string $nome,
