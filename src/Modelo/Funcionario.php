@@ -7,8 +7,9 @@ class Funcionario extends Pessoa
 {
     function __construct(
         private string $cargo,
-        private string $nome,
+        protected string $nome,
         private CPF $cpf,
+        private float $salario
     ) {
         parent::__construct($nome, $cpf);
     }
@@ -21,5 +22,15 @@ class Funcionario extends Pessoa
     public function alteraNome(string $nome): void
     {
         $this->nome = $nome;
+    }
+
+    public function recuperaSalario(): float
+    {
+        return $this->salario;
+    }
+
+    public function calculaBonificacao(): float
+    {
+        return $this->salario * 0.1;
     }
 }
