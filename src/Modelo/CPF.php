@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DMB\Banco\Modelo;
 
-class CPF
+final class CPF
 {
     private $numero;
 

@@ -3,23 +3,16 @@ declare(strict_types=1);
 
 namespace DMB\Banco\Modelo\Funcionario;
 
-use DMB\Banco\Modelo\Pessoa;
-use DMB\Banco\Modelo\CPF;
+use DMB\Banco\Modelo\{Pessoa, CPF};
 
 abstract class Funcionario extends Pessoa
 {
     function __construct(
-        private string $cargo,
         protected string $nome,
         private CPF $cpf,
         private float $salario
     ) {
         parent::__construct($nome, $cpf);
-    }
-
-    public function recuperaCargo(): string
-    {
-        return $this->cargo;
     }
 
     public function alteraNome(string $nome): void
