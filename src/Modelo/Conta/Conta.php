@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace DMB\Banco\Modelo\Conta;
 
+use DMB\Banco\Modelo\Conta\SaldoInsuficienteException;
 use DMB\Banco\Modelo\CPF;
+use InvalidArgumentException;
 
 abstract class Conta
 {
@@ -22,8 +24,8 @@ abstract class Conta
         $valorSaque = $valorASacar + $valorTaxado;
 
         if ($this->saldo < $valorSaque) {
-            echo "Você não tem saldo para este saque";
-            return;
+            throw new SaldoInsuficienteException($valorSaque, $this->saldo);
+            
         }
 
         $this->saldo -= $valorSaque;
@@ -32,8 +34,7 @@ abstract class Conta
     public function depositar(float $depositar) : void 
     {
         if ($depositar < 0) {
-            echo "Valor precisa ser positivo";
-            return;
+            throw new InvalidArgumentException('O valor de depósito deverá ser maior que zero.');
         }
         
         $this->saldo += $depositar;

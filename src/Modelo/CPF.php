@@ -5,9 +5,9 @@ namespace DMB\Banco\Modelo;
 
 final class CPF
 {
-    private $numero;
-
-    public function __construct(string $numero)
+    public function __construct(
+        private string $numero
+    )
     {
         $numero = filter_var($numero, FILTER_VALIDATE_REGEXP, [
             'options' => [
